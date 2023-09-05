@@ -1,8 +1,10 @@
-//Підключаємо gulp
-var gulp = require ("gulp");
-//Створюємо тестовий таск
-gulp.task ('testTask', function () {
- console.log ('This is a test task!');
+const { series, task } = require('gulp');
+
+// Define a Gulp 4 task called 'logMessage'
+task('logMessage', function(cb) {
+  console.log('This is a Gulp 4 task that logs a message.');
+  cb();
 });
-//Запуск тасків за замовчуванням
-gulp.task ("default", ["testTask"]);
+
+// Default task
+task('default', series('logMessage'));
