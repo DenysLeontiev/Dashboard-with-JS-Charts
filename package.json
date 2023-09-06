@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DenysLeontiev/WebProgramming2023NULP#readme",
   "devDependencies": {
+    "browser-sync": "^2.29.3",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-file-include": "^2.3.0",
