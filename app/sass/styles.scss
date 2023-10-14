@@ -1,21 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
-  --background-color1:#fafaff;
-  --background-color2:#fff;
-  --background-color3:#ededed;
-  --background-color4:#cad7fda4;
-  --primary-color:#4b49ac;
-  --secondary-color:#0c007d;
-  --Border-color:#3f0097;
-  --one-use-color:#3f0097;
-  --two-use-color:#5500cb;
+  --background-color1: #fafaff;
+  --background-color2: #ffffff;
+  --background-color3: #ededed;
+  --background-color4: #cad7fda4;
+  --primary-color: #4b49ac;
+  --secondary-color: #0c007d;
+  --Border-color: #3f0097;
+  --one-use-color: #3f0097;
+  --two-use-color: #5500cb;
 }
 
 body {
@@ -30,7 +31,7 @@ header {
   padding: 0 30px;
   background-color: var(--background-color1);
   position: fixed;
-  z-index: 2;
+  z-index: 100;
   box-shadow: 1px 1px 15px rgba(161, 182, 253, 0.825);
   display: flex;
   justify-content: space-between;
@@ -40,7 +41,7 @@ header {
 .logo {
   font-size: 27px;
   font-weight: 600;
-  color: #2f8d46;
+  color: rgb(47, 141, 70);
 }
 
 .icn {
@@ -51,7 +52,9 @@ header {
   cursor: pointer;
 }
 
-.logosec, .message, .searchbar {
+.searchbar,
+.message,
+.logosec {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +85,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 50px 50px 0;
+  border-radius: 0px 50px 50px 0px;
   background-color: var(--secondary-color);
   cursor: pointer;
 }
@@ -98,18 +101,16 @@ header {
   width: 7px;
   position: absolute;
   background-color: #fa7bb4;
+  border-radius: 50%;
   left: 19px;
   top: 8px;
-}
-
-.circle, .dp {
-  border-radius: 50%;
 }
 
 .dp {
   height: 40px;
   width: 40px;
   background-color: #626262;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,11 +134,12 @@ header {
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 40px 30px 30px;
+  padding: 40px 30px 30px 30px;
 }
 
 .main::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg, #005, #000032);
+  background-image:
+    linear-gradient(to bottom, rgb(0, 0, 85), rgb(0, 0, 50));
 }
 
 .main::-webkit-scrollbar {
@@ -145,7 +147,7 @@ header {
 }
 
 .main::-webkit-scrollbar-track {
-  background-color: rgba(158, 158, 158, 0.6980392157);
+  background-color: #9e9e9eb2;
 }
 
 .box-container {
@@ -161,8 +163,8 @@ header {
   width: 250px;
   background-color: var(--background-color2);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 00;
   box-shadow: 1px 1px 10px rgba(198, 189, 248, 0.825);
   display: flex;
   flex-direction: column;
@@ -216,12 +218,14 @@ header {
 }
 
 .option1 {
-  color: #fff;
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
   cursor: pointer;
 }
 
-.option1, .option1:hover {
-  border-left: 5px solid rgba(1, 0, 88, 0.6862745098);
+.option1:hover {
+  border-left: 5px solid #010058af;
   background-color: var(--Border-color);
 }
 
@@ -241,7 +245,7 @@ header {
   transform: scale(1.08);
 }
 
-.box:first-child {
+.box:nth-child(1) {
   background-color: var(--one-use-color);
 }
 
@@ -262,7 +266,7 @@ header {
 }
 
 .box .text {
-  color: #fff;
+  color: white;
 }
 
 .topic {
@@ -279,11 +283,11 @@ header {
 .report-container {
   min-height: 300px;
   max-width: 1200px;
-  margin: 70px auto 0;
-  background-color: #fff;
+  margin: 70px auto 0px auto;
+  background-color: #ffffff;
   border-radius: 30px;
-  box-shadow: 3px 3px 10px #bcbcbc;
-  padding: 0 20px 20px;
+  box-shadow: 3px 3px 10px rgb(188, 188, 188);
+  padding: 0px 20px 20px 20px;
 }
 
 .report-header {
@@ -292,7 +296,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 20px 10px;
+  padding: 20px 20px 10px 20px;
   border-bottom: 2px solid rgba(0, 20, 151, 0.59);
 }
 
@@ -307,7 +311,7 @@ header {
   width: 90px;
   border-radius: 8px;
   background-color: #5500cb;
-  color: #fff;
+  color: white;
   font-size: 15px;
   border: none;
   cursor: pointer;
@@ -319,7 +323,8 @@ header {
   padding: 20px;
 }
 
-.item1, .report-topic-heading {
+.report-topic-heading,
+.item1 {
   width: 1120px;
   display: flex;
   justify-content: space-between;
@@ -328,7 +333,7 @@ header {
 
 .t-op {
   font-size: 18px;
-  letter-spacing: 0;
+  letter-spacing: 0px;
 }
 
 .items {
@@ -342,15 +347,15 @@ header {
 
 .t-op-nextlvl {
   font-size: 14px;
-  letter-spacing: 0;
+  letter-spacing: 0px;
   font-weight: 600;
 }
 
 .label-tag {
   width: 100px;
   text-align: center;
-  background-color: #00b100;
-  color: #fff;
+  background-color: rgb(0, 177, 0);
+  color: white;
   border-radius: 4px;
 }
 
