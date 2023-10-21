@@ -46,7 +46,7 @@ gulp.task("watch", function () {
     gulp.watch("app/*.html", gulp.series("html"));
     // gulp.watch("app/css/*.css", gulp.series("css"));
     gulp.watch("app/js/*.js", gulp.series("scripts"));
-    gulp.watch("app/sass/*.sass", gulp.series("sass"));
+    gulp.watch("app/sass/*.scss", gulp.series("sass"));
     gulp.watch("app/img/*.{jpg,jpeg,png,gif}", gulp.series("images"))
     gulp.watch("dist").on('change', browserSync.reload);
 });
