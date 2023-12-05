@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/echarts@5.4/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4/dist/echarts.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Infinity</title>
     <style type="text/tailwindcss">
@@ -27,8 +27,7 @@
                 <div class="user_profile py-8 border-b-[1px] border-b-gray-100">
                     <div class="flex ">
                         <div class="img_wrapper w-11 h-11 ms-6 me-4">
-                                <img src="images/den.jpg"
-                                alt="" class="w-full h-full  rounded-full object-cover ">
+                            <img src="images/den.jpg" alt="" class="w-full h-full  rounded-full object-cover ">
                         </div>
                         <div class="text-[#6a6c6f]">
                             <h4 class="text-md">lorem said</h4>
@@ -519,6 +518,31 @@
     <!-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script>
+
+        const filePath = './json/data.json';
+
+        async function fetchData() {
+            try {
+                const response = await fetch(filePath);
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return await response.json();
+            } catch (error) {
+                throw new Error('There has been a problem with your fetch operation:', error);
+            }
+        }
+
+        let jsonData = null;
+        async function renderPlot() {
+            jsonData = await fetchData();
+            console.log(jsonData);
+        } 
+
+        renderPlot();
+
+
         const barChart = document.getElementById('barChart');
         const pieChart = document.getElementById('pieChart');
 

@@ -1,4 +1,3 @@
-// barChart
 const barChart = document.getElementById('barChart');
 
 const barChartData = {
