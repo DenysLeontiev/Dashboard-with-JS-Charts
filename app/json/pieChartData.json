@@ -1,0 +1,19 @@
+{
+    "labels": [
+      "Chrome",
+      "Safari",
+      "Firefox"
+    ],
+    "datasets": [
+      {
+        "data": [100, 20, 500],
+        "backgroundColor": [
+          "#303f9f",
+          "#38b4ee",
+          "#4caf50"
+        ],
+        "hoverOffset": 4
+      }
+    ]
+  }
+  

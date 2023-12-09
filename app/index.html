@@ -550,7 +550,7 @@
                 },
             ],
         };
-        
+
         let jsonData = null;
         async function renderPlot() {
             try {
@@ -598,45 +598,58 @@
             },
         });
 
-        const pieChartData = {
-            labels: [
-                'Chrome',
-                'Safari',
-                'Firefox'
-            ],
-            datasets: [{
-                data: [220, 50, 100],
-                backgroundColor: [
-                    '#303f9f',
-                    '#38b4ee',
-                    '#4caf50'
-                ],
-                hoverOffset: 4
-            }]
-        };
-        new Chart(pieChart, {
-            type: 'pie',
-            data: pieChartData,
-            options: {
-                layout: {
-                    padding: {
-                        top: 15,
-                        right: 10,
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: "right",
-                        labels: {
-                            boxWidth: 15,
-                            boxHeight: 15,
-                        }
+        const pieChartDataFilePath = './json/pieChartData.json'; 
+        async function fetchPieChartData() {
+            try {
+                const response = await fetch(pieChartDataFilePath);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                return await response.json();
+            } catch (error) {
+                throw new Error('There has been a problem with your fetch operation:', error);
+            }
+        }
+
+        let pieChartData = null;
+        async function renderPieChart() {
+            try {
+                pieChartData = await fetchPieChartData();
+                console.log(pieChartData);
+
+                // Create the pie chart with the fetched data
+                new Chart(pieChart, {
+                    type: 'pie',
+                    data: pieChartData,
+                    options: {
+                        layout: {
+                            padding: {
+                                top: 15,
+                                right: 10,
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: "right",
+                                labels: {
+                                    boxWidth: 15,
+                                    boxHeight: 15,
+                                }
+                            },
+                        },
+                        responsive: true,
                     },
-                },
-                responsive: true,
-            },
-        });
+                });
+            } catch (error) {
+                console.error('Error rendering pie chart:', error);
+            }
+        }
+
+        // Call renderPieChart to initiate the data fetching and rendering process
+        renderPieChart();
     </script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.4/dist/echarts.min.js"></script> -->
