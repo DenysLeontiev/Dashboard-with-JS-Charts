@@ -1,0 +1,16 @@
+{
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "datasets": [
+      {
+        "label": "Customers12",
+        "data": [1, 200, 200, 200, 500, 5, 450, 450, 450, 400, 450, 450],
+        "backgroundColor": "#303f9f"
+      },
+      {
+        "label": "Users3213",
+        "data": [5, 100, 120, 140, 200, 100, 7, 200, 150, 2, 300, 350],
+        "backgroundColor": "#3f51b5"
+      }
+    ]
+  }
+  
