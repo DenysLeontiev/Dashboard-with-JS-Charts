@@ -524,44 +524,54 @@
         async function fetchData() {
             try {
                 const response = await fetch(filePath);
-                console.log(response);
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+
                 return await response.json();
             } catch (error) {
                 throw new Error('There has been a problem with your fetch operation:', error);
             }
         }
 
+        let barChartData = {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Customers',
+                    data: [],
+                    backgroundColor: '#303f9f',
+                },
+                {
+                    label: 'Users',
+                    data: [],
+                    backgroundColor: '#3f51b5',
+                },
+            ],
+        };
+        
         let jsonData = null;
         async function renderPlot() {
-            jsonData = await fetchData();
-            console.log(jsonData);
-        } 
+            try {
+                jsonData = await fetchData();
 
+                barChartData.labels = jsonData.labels;
+                barChartData.datasets[0].data = jsonData.datasets[0].data;
+                barChartData.datasets[1].data = jsonData.datasets[1].data;
+
+            } catch (error) {
+                console.error('Error rendering plot:', error);
+            }
+        }
+
+        // Call renderPlot to initiate the data fetching and rendering process
         renderPlot();
 
 
         const barChart = document.getElementById('barChart');
         const pieChart = document.getElementById('pieChart');
 
-        const barChartData = {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [
-                {
-                    label: 'Customers',
-                    data: ["490", "200", "200", "200", "500", "350", "450", "450", "450", "400", "450", "450"],
-                    backgroundColor: "#303f9f",
-
-                },
-                {
-                    label: 'Users',
-                    data: ["220", "100", "120", "140", "200", "100", "400", "200", "150", "180", "300", "350"],
-                    backgroundColor: "#3f51b5",
-                },
-            ]
-        };
         new Chart(barChart, {
             type: 'bar',
             data: barChartData,
