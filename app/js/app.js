@@ -1,6 +1,7 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     const filePath = './json/barChartData.json';
+    const pieChartDataFilePath = './json/pieChartData.json';
 
     async function fetchData() {
         try {
@@ -10,7 +11,35 @@ window.onload = () => {
                 throw new Error('Network response was not ok');
             }
 
-            return await response.json();
+            const jsonData = await response.json();
+            barChartData.labels = jsonData.labels;
+            barChartData.datasets[0].data = jsonData.datasets[0].data;
+            barChartData.datasets[0].label = jsonData.datasets[0].label;
+            barChartData.datasets[1].data = jsonData.datasets[1].data;
+            barChartData.datasets[1].label = jsonData.datasets[1].label;
+
+            renderBarChart(); // Call the rendering function here
+
+            return jsonData;
+        } catch (error) {
+            throw new Error('There has been a problem with your fetch operation:', error);
+        }
+    }
+
+    async function fetchPieChartData() {
+        try {
+            const response = await fetch(pieChartDataFilePath);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const jsonData = await response.json();
+            pieChartData = jsonData;
+
+            renderPieChart(); // Call the rendering function here
+
+            return jsonData;
         } catch (error) {
             throw new Error('There has been a problem with your fetch operation:', error);
         }
@@ -32,76 +61,44 @@ window.onload = () => {
         ],
     };
 
-    let jsonData = null;
+    let pieChartData = null;
+
     async function renderBarChart() {
         try {
-            jsonData = await fetchData();
-
-            barChartData.labels = jsonData.labels;
-
-            barChartData.datasets[0].data = jsonData.datasets[0].data;
-            barChartData.datasets[0].label = jsonData.datasets[0].label;
-
-            barChartData.datasets[1].data = jsonData.datasets[1].data;
-            barChartData.datasets[1].label = jsonData.datasets[1].label;
-
-
+            const barChart = document.getElementById('barChart');
+            new Chart(barChart, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    layout: {
+                        padding: {
+                            top: 10
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false,
+                        },
+                    },
+                    responsive: true,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    }
+                },
+            });
         } catch (error) {
             console.error('Error rendering plot:', error);
         }
     }
 
-    renderBarChart();
-
-
-    const barChart = document.getElementById('barChart');
-    const pieChart = document.getElementById('pieChart');
-
-    new Chart(barChart, {
-        type: 'bar',
-        data: barChartData,
-        options: {
-            layout: {
-                padding: {
-                    top: 10
-                }
-            },
-            plugins: {
-                title: {
-                    display: false,
-                },
-            },
-            responsive: true,
-            scales: {
-                x: {
-                    stacked: true,
-                },
-                y: {
-                    stacked: true
-                }
-            }
-        },
-    });
-
-    const pieChartDataFilePath = './json/pieChartData.json';
-    async function fetchPieChartData() {
-        try {
-            const response = await fetch(pieChartDataFilePath);
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            return await response.json();
-        } catch (error) {
-            throw new Error('There has been a problem with your fetch operation:', error);
-        }
-    }
-
-    let pieChartData = null;
     async function renderPieChart() {
         try {
-            pieChartData = await fetchPieChartData();
+            const pieChart = document.getElementById('pieChart');
             console.log(pieChartData);
 
             new Chart(pieChart, {
@@ -132,5 +129,7 @@ window.onload = () => {
         }
     }
 
-    renderPieChart();
-};
+    fetchData();
+    fetchPieChartData();
+
+});
